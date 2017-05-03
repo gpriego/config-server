@@ -2,11 +2,12 @@ server:
   context-path: /
   servlet-path: /config
 spring:
-   data.mongodb: 
-       database: local
-       host: 192.168.99.100
-       port: 32768
-   profiles.active: mongo
-   jpa.show-sql: true
-   
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/gpriego/skeleton-config.git
+          username: gpriego
+          password: M1thr@nd1r 
+
    

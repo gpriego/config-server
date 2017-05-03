@@ -7,7 +7,6 @@ import org.springframework.context.annotation.ComponentScan;
 
 @EnableConfigServer
 @SpringBootApplication
-@ComponentScan({"com.rol.stories.svcs.config","com.rol.stories.svcs.security"})
 public class ConfigServerApplication {
 
 	public static void main(String[] args) {

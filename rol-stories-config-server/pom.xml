@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.rol.stories.svcs</groupId>
-	<artifactId>rol-stories-config-server</artifactId>
+	<artifactId>config-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -23,7 +23,8 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 
-		<docker.image.prefix>docker-</docker.image.prefix>
+		<docker.image.prefix>rol-stories</docker.image.prefix>
+		<docker.registry>104946013499.dkr.ecr.us-west-2.amazonaws.com/rol-stories-docker-repo</docker.registry>
 	</properties>
 
 	<dependencies>
@@ -68,19 +69,40 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
-				<groupId>com.spotify</groupId>
+				<groupId>org.jolokia</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
-				<version>0.4.11</version>
+				<version>0.13.8</version>
 				<configuration>
-					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-					<dockerDirectory>src/main/docker</dockerDirectory>
-					<resources>
-						<resource>
-							<targetPath>/</targetPath>
-							<directory>${project.build.directory}</directory>
-							<include>${project.build.finalName}.jar</include>
-						</resource>
-					</resources>
+					<images>
+						<image>
+							<name>${project.artifactId}:${BUILD_VERSION}</name>
+							<alias>${project.artifactId}</alias>
+							<build>
+								<from>openjdk:8</from>
+								<tags>
+									<tag>latest</tag>
+									<tag>${BUILD_VERSION}</tag>
+								</tags>
+								<assembly>
+									<dockerFileDir>.</dockerFileDir>
+									<descriptorRef>artifact</descriptorRef>
+								</assembly>
+								<entryPoint>
+									<shell>java -jar /maven/${project.artifactId}-${project.version}.jar</shell>
+								</entryPoint>
+							</build>
+							<run>
+								<namingStrategy>alias</namingStrategy>
+								<ports>
+									<port>8080:8080</port>
+								</ports>
+								<log>
+									<prefix>${project.artifactId}</prefix>
+								</log>
+								<memory>524288000</memory>
+							</run>
+						</image>
+					</images>
 				</configuration>
 			</plugin>
 		</plugins>

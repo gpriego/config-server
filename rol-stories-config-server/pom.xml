@@ -24,7 +24,7 @@
 		<java.version>1.8</java.version>
 
 		<docker.image.prefix>rol-stories</docker.image.prefix>
-		<docker.registry>104946013499.dkr.ecr.us-west-2.amazonaws.com/rol-stories-docker-repo</docker.registry>
+		<docker.push.registry>104946013499.dkr.ecr.us-west-2.amazonaws.com/rol-stories-docker-repo</docker.push.registry>
 	</properties>
 
 	<dependencies>

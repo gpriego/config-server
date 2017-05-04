@@ -84,7 +84,6 @@
 									<tag>${BUILD_VERSION}</tag>
 								</tags>
 								<assembly>
-									<dockerFileDir>.</dockerFileDir>
 									<descriptorRef>artifact</descriptorRef>
 								</assembly>
 								<entryPoint>

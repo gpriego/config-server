@@ -8,6 +8,7 @@ spring:
         git:
           uri: https://github.com/gpriego/skeleton-config.git
           username: gpriego
-          password: M1thr@nd1r 
+          password: M1thr@nd1r
+          search-paths: skeleton-config
 
    

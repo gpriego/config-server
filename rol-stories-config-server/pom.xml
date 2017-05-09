@@ -43,11 +43,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-mongodb</artifactId>
-		</dependency>
-
 	</dependencies>
 
 	<dependencyManagement>
@@ -75,13 +70,13 @@
 				<configuration>
 					<images>
 						<image>
-							<name>${project.artifactId}:${BUILD_VERSION}</name>
+							<name>${project.artifactId}:${project.version}</name>
 							<alias>${project.artifactId}</alias>
 							<build>
 								<from>openjdk:8</from>
 								<tags>
 									<tag>latest</tag>
-									<tag>${BUILD_VERSION}</tag>
+									<tag>${project.version}</tag>
 								</tags>
 								<assembly>
 									<descriptorRef>artifact</descriptorRef>
